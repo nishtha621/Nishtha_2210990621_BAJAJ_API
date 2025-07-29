@@ -10,7 +10,9 @@ app.get("/", (req, res) => {
 app.post("/bfhl", (req, res) => {
   try {
     const input = req.body.data || [];
-
+      if (!Array.isArray(input) || input.length === 0) {
+    return res.status(400).json({ is_success: false });
+  }
     let even_numbers = [];
     let odd_numbers = [];
     let alphabets = [];
